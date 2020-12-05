@@ -6,53 +6,61 @@ class LinkedList():
 	def insert_at_End(self,data):
 		if self.head==None:
 			self.head=self.last=Node(data)
+			self.previous=None
 		else:
 			print(self.head,self.last)
 			address=Node(data)
 			self.last.next=address
+			address.previous=self.last
 			self.last=address
+
 
 	def insert_at_Begining(self,data):
 		if self.head==None:
 			self.head=self.last=Node(data)
+			self.previous=None
 		else:
 			address=Node(data)
+			self.head.previous=address
+			address.previous=None
 			address.next=self.head
 			self.head=address
 
-	def insert_in_mid(self,data,element):
+	def insert_in_mid(self,after,value):#data=pos element=value to insert
 		if self.head==None:
-			self.head=self.last=Node(data)
+			self.head=self.last=Node(value)
+			self.previous=None
 		else:
-			new=Node(data)
-			address=self.search(element)
-			previous=self.previousaddress(address)
-			previous.next=new
-			new.next=address
+			new=Node(value)
+			address=self.search(after)
+			new.next=address.next
+			address.next=new
+			new.previous=address
+			new.next.previous=new
+
+		
 	def search(self,element):
 		i=self.head
-		while(i.data!=element):
+		while(i!=None):
+			if(i.data==element):
+				return i
 			i=i.next
-
-		return i
-	def previousaddress(self,address):
-		i=self.head
-		while(i.next!=address):
-			i=i.next
-		return i
 	def delete(self,element):
 		address=self.search(element)
-		if address==self.head:
+		
+		if self.last==self.head==address:
+			self.head=self.hsead=None
+		elif self.head==address:
 			self.head=self.head.next		#delete from begining
-		elif self.head ==self.last:
-			self.head=self.last=None
+			self.head.previous=None
 		else:
-			i=self.previousaddress(address)
+			i=address.previous
 			if address==self.last:			
 				self.last=i
-				i.next=None			#delete from begining last
+				i.next=None			
 			else:
 				i.next=address.next				#delete from mid
+				address.next.previous=i
 			
 	def display(self):
 		a=self.head
@@ -63,14 +71,20 @@ class LinkedList():
 class Node():
 	def __init__(self,data):
 		self.data=data
+		self.previous=None
 		self.next=None
 		
 ls=LinkedList()
 ls.insert_at_Begining(1)
 ls.insert_at_Begining(2)
 ls.insert_at_Begining(3)
-ls.insert_at_Begining(4)
-ls.display()
-ls.insert_in_mid(8,2)
+ls.insert_at_End(7)
 
+ls.insert_in_mid(2,4)
+
+print("before deleting")
+ls.display()
+
+ls.delete(7)
+print("after deletings")
 ls.display()
