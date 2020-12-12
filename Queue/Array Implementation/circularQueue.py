@@ -21,19 +21,21 @@ class Queue:
 		self.queue[self.rear]=element
 	
 	def delete(self):
+		print("pos",self.rear,self.front)
 		self.queue[self.front]=None
+		if self.front==self.QueueLen-1 and self.rear<self.front:
+			self.front=-1	
 		if self.front!=-1 and self.rear==self.front:
 			self.front=self.rear=-1
 			return
 		if self.front==-1 and self.rear==-1:
 			print("queue is embty")
 			return
-			
 		self.front+=1
 
 	def display(self):
 		if self.front==-1: 
-			print("empyt")
+			print("empty")
 			return
 		print(self.queue)
 
