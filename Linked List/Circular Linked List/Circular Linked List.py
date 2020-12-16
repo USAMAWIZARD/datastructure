@@ -53,15 +53,17 @@ class LinkedList():
 		else:
 			i=self.previousaddress(address)
 			if address==self.last:			
-				self.last=i
+				self.last=i	
 				i.next=None			#delete from begining last
 			else:
 				i.next=address.next				#delete from mid
 			
 	def display(self):
 		a=self.head
-		while a!=None:
+		while True:
 			print(a.data)
+			if a==self.last:
+				break
 			a=a.next
 		
 			
@@ -75,8 +77,7 @@ ls.insert_at_Begining(1)
 ls.insert_at_Begining(2)
 ls.insert_at_Begining(3)
 ls.insert_at_Begining(4)
-ls.insert_at_End(0)
-ls.insert_at_End(1)
+
 
 
 ls.display()
