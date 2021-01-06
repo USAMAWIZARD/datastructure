@@ -1,4 +1,5 @@
-numbers=[1,2,4,1,2,5]
+numbers=[1,9,4,9,2,5]
+
 toserarch=int(input("which number to search"))	
 for i in range(len(numbers)):
 	if numbers[i]==toserarch:

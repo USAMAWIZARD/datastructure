@@ -4,4 +4,5 @@ def factorial(fact):
     else:
         return fact*factorial(fact-1)
 
+
 print(factorial(5))

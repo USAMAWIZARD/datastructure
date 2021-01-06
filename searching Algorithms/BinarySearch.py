@@ -16,6 +16,5 @@ while(low!=high):
 	print("i")
 
 
-	print("number cannot be found")
 if low==high:
 	print("element not present in the list")
