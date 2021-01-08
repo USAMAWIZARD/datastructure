@@ -36,19 +36,19 @@ class Tree:
                         newchildnodes.append(2*i+2)
                     else:
                         newchildnodes.append(" ")
-            print(" hi")
+     
             childnodes=newchildnodes.copy()
             newchildnodes=[]
 
-    def inordertraversal(self,pos,wnode):
+    def inordertraversal(self,pos):
         if (pos*2)+1<=len(self.tree):
             if self.tree[(pos*2)+1]!=None: 
-                pos=self.inordertraversal((pos*2)+1,'l')
+                pos=self.inordertraversal((pos*2)+1)
                 print(self.tree[pos]) 
                 #area
                 if (pos*2)+2<=len(self.tree):
                     if self.tree[(pos*2)+2]!=None: 
-                        pos=self.inordertraversal((pos*2)+2,'l')
+                        pos=self.inordertraversal((pos*2)+2)
                 #area
                 return (pos-1)//2
             else:
@@ -60,8 +60,7 @@ class Tree:
 
 
 t=Tree()
-t.inordertraversal(0,'a')
-exit()
+
 while True:
     option=int(input("1.insert\n2.delete\n3.display\n4.inorder traversal\n5.exit"))
     if option==1:
@@ -78,6 +77,6 @@ while True:
     if option==3:
         t.display() 
     if option==4:
-        t.inordertraversal(0,'n')
+        t.inordertraversal(0)
     if option==5:
         exit()
