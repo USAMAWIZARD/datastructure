@@ -1,4 +1,4 @@
- #genral tree implementation 
+#genral tree implementation 
 class Tree:
     Root=None
     toSearch=None
@@ -6,14 +6,27 @@ class Tree:
     def __init__(self):
         self.Root=Node(int(input("enter the value of root node")))
 
-    def insert(self,value,rootnode,pos):
-        address=self.getAddress(rootnode)
-        if address==None:
+    def insert(self,value,i):
+        if self.Root==None:
+            self.Root=Node(value)
             return
-        if pos=="R"or pos=='r':
-            address.right=Node(value)
-        elif pos=='L' or pos=='l':
-            address.left=Node(value)
+        while True:
+            if value>i.data:
+                if i.left==None:
+                    print("aaya")
+                    i.left=Node(value)
+                    return
+                else:
+                    self.insert(value,i)
+
+            elif value<i.data:
+                print("ldd")
+                if i.right==None:
+                    i.right=Node(value)
+                    return
+                else:
+                    self.insert(value,i)
+
 
 
     def getAddress(self,tofind):
@@ -31,19 +44,19 @@ class Tree:
 
     def delete(self,delloc):
         previousnode=self.getAddress(delloc[:len(delloc)-1])
-        if previousnode==None:
-            return
-        del previousnode.childs[int(delloc[-1])]
 
-    def display(self,childnodes):
-        address=address.right
-        if childnodes==None:
-            return      
-            print(i.data,end="")
-            childnodesarray=childnodesarray+i.childs
-        print("")
-        self.display(address)
-        
+
+    def display(self,childnode):
+        print(childnode.data)
+        if childnode.right!=None:
+            self.display(childnode.right)   
+        else:
+            return childnode
+        if childnode.left!=None: 
+            self.display(childnode.left)
+        else:
+            return childnode
+
 class Node:
     def __init__(self,value):
         self.data=value
@@ -56,12 +69,12 @@ while True:
     option=int(input("1.insert\n2.delete\n3.display\n4.exit"))
     if option==1:
         data=int(input("enter data to insert"))
-        rootnode=input("enter postion of root node for the node")
-        pos= input("enter R or L")
-        t.insert(data,rootnode, pos)
+        t.insert(data,t.Root)
     if option ==2:
-        t.delete(int(input("enter the node location")))
+        print(t.Root.right,t.Root.left)
+        #t.delete(int(input("enter the node location")))
     if option==3:
-        t.display(Tree.Root)
+
+        t.display(t.Root)
     if option==4:
         exit()

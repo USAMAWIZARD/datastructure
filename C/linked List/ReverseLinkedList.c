@@ -9,7 +9,6 @@ struct  node
     
 };
 
-
 struct node * first=NULL;
 struct node * last=NULL;
 struct node *getpriviousaddress(struct node *);
@@ -69,7 +68,7 @@ void display(){
         if(i==last )
         break;
         i=i->next;
-        
+              
     }
     
 }
