@@ -11,36 +11,26 @@ class Tree:
             self.Root=Node(value)
             return
         while True:
+            print(i.data,value)
             if value>i.data:
                 if i.left==None:
                     print("aaya")
                     i.left=Node(value)
                     return
                 else:
-                    self.insert(value,i)
-
-            elif value<i.data:
+                    self.insert(value,i.left)
+                    return
+            else :
                 print("ldd")
                 if i.right==None:
                     i.right=Node(value)
                     return
                 else:
-                    self.insert(value,i)
+                    self.insert(value,i.left)
+                    return
 
 
-
-    def getAddress(self,tofind):
-        address=self.Root
-        try:
-            for i in range(len(tofind)-1):
-                if int(tofind[i+1])=='l' or int(tofind[i+1])=='L':
-                    address=address.left
-                if int(tofind[i+1])=='r' or int(tofind[i+1])=='R':
-                    address=address.right          
-        except:
-            print("no root node exist of address specified")
-            return None
-        return address
+ 
 
     def delete(self,delloc):
         previousnode=self.getAddress(delloc[:len(delloc)-1])
@@ -49,7 +39,7 @@ class Tree:
     def display(self,childnode):
         print(childnode.data)
         if childnode.right!=None:
-            self.display(childnode.right)   
+            self.display(childnode.right)
         else:
             return childnode
         if childnode.left!=None: 
